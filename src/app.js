@@ -45,22 +45,22 @@ function openModal() {
 function authFormHendler(event) {
   event.preventDefault();
 
-  const btn = event.target.querySelector('button')
+  const btn = event.target.querySelector("button");
   const email = event.target.querySelector("#email").value;
   const password = event.target.querySelector("#password").value;
 
-  btn.disabled = true
+  btn.disabled = true;
 
   authWithEmailAndPassword(email, password)
-  .then(Question.fetch)
-  .then(renderModalAfterAurh)
-  .then(() => btn.disabled = false)
+    .then(Question.fetch)
+    .then(renderModalAfterAurh)
+    .then(() => (btn.disabled = false));
 }
 
 function renderModalAfterAurh(content) {
-    if(typeof content === 'string') {
-        createModal('Error', content)
-    }else{
-        createModal('ask list', Question.listToHtml(content))
-    }
+  if (typeof content === "string") {
+    createModal("Error", content);
+  } else {
+    createModal("ask list", Question.listToHtml(content));
+  }
 }

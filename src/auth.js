@@ -23,13 +23,15 @@ export function authWithEmailAndPassword(email, password) {
     {
       method: "POST",
       body: JSON.stringify({
-        email, password,
-        returnSecureToken: true
+        email,
+        password,
+        returnSecureToken: true,
       }),
       headers: {
-        'content-type': 'aplication/json'
-      }
-    })
-    .then(response => response.json())
-    .then(data => data.idToken)
+        "content-type": "aplication/json",
+      },
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => data.idToken);
 }

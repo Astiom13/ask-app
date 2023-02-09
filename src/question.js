@@ -20,21 +20,25 @@ export class Question {
   }
 
   static fetch(token) {
-    if(!token) {
-        return Promise.resolve('<p class="error">You dont have token</p> ')
+    if (!token) {
+      return Promise.resolve('<p class="error">You dont have token</p> ');
     }
-    return fetch(`https://ask-question-f0277-default-rtdb.firebaseio.com/question.json?auth=${token}`)
-    .then(response => response.json())
-    .then(response => {
-        if(response && response.error) {
-            return `<p class="error">${response.error}</p> `
+    return fetch(
+      `https://ask-question-f0277-default-rtdb.firebaseio.com/question.json?auth=${token}`
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        if (response && response.error) {
+          return `<p class="error">${response.error}</p> `;
         }
 
-        return response ? Object.keys(response).map(key => ({
-            ...response[key],
-            id: key
-        })) : []
-    })
+        return response
+          ? Object.keys(response).map((key) => ({
+              ...response[key],
+              id: key,
+            }))
+          : [];
+      });
   }
 
   static renderList() {
@@ -51,8 +55,10 @@ export class Question {
 
   static listToHtml(questions) {
     return questions.length
-    ? `<ol>${questions.map(question => `<li>${question.text}</li>`).join(' ')}</ol>`
-    : '<p>you dont have question</p>'
+      ? `<ol>${questions
+          .map((question) => `<li>${question.text}</li>`)
+          .join(" ")}</ol>`
+      : "<p>you dont have question</p>";
   }
 }
 
